@@ -31,11 +31,8 @@ function App() {
   const pswdClick = () => {
     var pwd = "";
     for (let i = 0; i < length; i++) {
-      console.log(generatedPassword);
       const password = Math.floor(Math.random() * generatedPassword.length);
-      console.log(password);
       const generatedPswd = generatedPassword[password];
-      console.log(generatedPswd);
       pwd = pwd + generatedPswd;
     }
     setPassword(pwd);
@@ -50,6 +47,10 @@ function App() {
   function handleSymbols() {
     setSymbol(!symbol);
   }
+
+  const copyPassword = () => {
+    navigator.clipboard.writeText(password);
+  };
 
   return (
     <div className="flex justify-center items-center h-screen flex-col">
@@ -100,9 +101,13 @@ function App() {
       <div>
         <input
           type="text"
-          className="rounded border-2 m-2 p-0.5"
+          className="rounded border-2 m-2 p-0.5 w-24"
           value={password}
         />
+        <i
+          className="fa-regular fa-copy cursor-pointer"
+          onClick={copyPassword}
+        ></i>
       </div>
     </div>
   );
